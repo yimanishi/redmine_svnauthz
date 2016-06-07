@@ -1,0 +1,50 @@
+<div class="contextual">
+  <%= link_to_if_authorized(l(:label_svnauthz_new),
+      {:action => 'new', :project_id => @project},
+      :class => 'icon icon-add') %>
+</div>
+
+<h2><%=h l(:label_svnauthz) %></h2>
+
+<ul>
+<li>対象ディレクトリに入る値はシステム全体でユニークである必要がある</li>
+<li>複数のアクセス権限がある場合は、| でセパレートして１行で追記する</li>
+<li>対象ディレクトリに [groups] を指定した場合、グループ設定のレコードとなる</li>
+<li>グループ設定のレコードはグループフラグを付与する</li>
+<li>同じ対象ディレクトリに対するレコードを複数作成した場合、最初に見つかった１レコードしか認識しない</li>
+</ul>
+
+<% if @svnauthz_settings.blank? %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% else %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th><%=h l(:field_directory) %></th>
+        <th><%=h l(:field_permission) %></th>
+        <th><%=h l(:field_group_flag) %></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @svnauthz_settings.each do |authz| %>
+        <tr class="<%= cycle('odd', 'even') %>">
+          <td><%= authz.id %></td>
+          <td><%= authz.directory %></td>
+          <td><%= authz.permission %></td>
+          <td><%= authz.group_flag %></td>
+          <td><%= link_to l(:button_edit),
+                  edit_project_svnauthz_setting_path(@project, authz),
+                  :class => 'icon icon-edit' %></td>
+          <td><%= link_to l(:label_deleted),
+                          {:action => 'destroy', :project_id => @project, :id => authz.id},
+                           :confirm => l(:text_are_you_sure),
+                           :method => :delete,
+                           :class => 'icon icon-del' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

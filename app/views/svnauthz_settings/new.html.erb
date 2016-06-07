@@ -1,0 +1,5 @@
+<%= labelled_form_for :svnauthz_settings, @svnauthz_settings,
+    :url => project_svnauthz_settings_path(@project) do |f| %>
+  <%= render :partial => 'svnauthz_settings/form', :locals => {:form => f} %>
+  <%= f.submit l(:button_create) %>
+<% end %>

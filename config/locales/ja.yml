@@ -1,0 +1,9 @@
+ja:
+  label_svnauthz: SvnAuthz
+  project_module_svnauthz: SvnAuthz
+  permission_view_svnauthz: SvnAuthzの閲覧
+  permission_manage_svnauthz: SvnAuthzの管理
+  label_svnauthz_new: SvnAuthzに追加
+  field_directory: 対象ディレクトリ
+  field_permission: アクセス権限
+  field_group_flag: グループフラグ

@@ -1,0 +1,8 @@
+<h2><%=h l(:label_svnauthz) %>#<%= @svnauthz_settings.id %></h2>
+
+<%= labelled_form_for :svnauthz_settings, @svnauthz_settings,
+    {:url => project_svnauthz_setting_path(@project),
+     :html => {:multipart => true, :id => 'svnauthz_settings_form'}} do |p| %>
+  <%= render :partial => 'svnauthz_settings/form', :locals => {:form => p} %>
+  <%= p.submit l(:button_edit) %>
+<% end %>
